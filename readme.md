@@ -38,7 +38,7 @@ Microsass allows to create variables using `$size1: 300px`; and basic arithmetic
     <link sass="./main.scss">
 </head>
 <body>
-    <script src="./microsass.js"></script>
+    <script src="./microsass.min.js"></script>
 </body>
 ```
 
