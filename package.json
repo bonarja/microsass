@@ -2,7 +2,7 @@
   "name": "microsass",
   "version": "1.0.0",
   "description": "simple scss to css in the web navigator",
-  "main": "./dist/microsass.min.js",
+  "main": "microsass.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
