@@ -66,7 +66,7 @@ Load by javaScript
 
 <br>
 
-# Cover SCSS text
+# Conver SCSS text
 
 Convert micro sass string to css minify string
 
