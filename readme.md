@@ -1,8 +1,8 @@
-# Microsass [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bonarja/microsass/blob/master/LICENSE) [![NPM version](https://img.shields.io/npm/v/microsass.svg)](https://www.npmjs.com/package/microsass) 
+# Microsass [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bonarja/microsass/blob/master/LICENSE) [![NPM version](https://img.shields.io/npm/v/microsass.svg)](https://www.npmjs.com/package/microsass)
 
 Microsass is a script that can convert the basic structures of **SCSS** into **CSS** directly in the browser.
 
-Microsass can process the staggered selectors of **SCSS**, y supports the declaration and use of basic variables, as well as the basic arithmetic processing of variables.
+Microsass can process the staggered selectors of **SCSS**, and supports the declaration and use of basic variables, as well as the basic arithmetic processing of variables.
 
 It also interprets the properties to add the -webkit, -moz-, -o and -ms required.
 
@@ -12,20 +12,22 @@ It also interprets the properties to add the -webkit, -moz-, -o and -ms required
 
 ## [https://bonarja.github.io/microsass](https://bonarja.github.io/microsass) 🔨⛏
 
-
 <br/>
 
 # Support
 
-Microsass supports sass staggered selectors, the use of & (self selector), @media screen, @keyframes and @font-face. 
+Microsass supports sass staggered selectors, the use of & (self selector), @media screen, @keyframes and @font-face.
 
 Microsass allows to create variables using `$size1: 300px`; and basic arithmetic processes (addition, subtraction, multiplication and division)
+
 ```scss
-.item{
+.item {
     width: $size1 + $size2;
 }
 ```
+
 ## NOTE Microsass still can not interpret @media screen inside another 🙁
+
 <br/>
 
 # USE
@@ -34,21 +36,23 @@ Microsass allows to create variables using `$size1: 300px`; and basic arithmetic
 
 ```html
 <head>
-    <title> Microsass </title>
-    <link sass="./main.scss">
+    <title>Microsass</title>
+    <link sass="./main.scss" />
 </head>
 <body>
     <script src="./microsass.min.js"></script>
 </body>
 ```
 
-For multiple load you can separate with commas
+For multiple load you can separate using commas
 
 ```html
-<link sass="
+<link
+    sass="
     ./main.scss,
     .style.scss
-">
+"
+/>
 ```
 
 ## Autoload by Promise
@@ -66,7 +70,7 @@ Load by javaScript
 
 <br>
 
-# Conver SCSS text
+# Convert SCSS text
 
 Convert micro sass string to css minify string
 
@@ -86,7 +90,9 @@ var scss = `
 `;
 var css = microsass.convert(scss);
 ```
+
 Convert micro sass string to css with format, html format and colors
+
 ```javascript
 var scss = `
     $w1: 400px;
@@ -110,12 +116,12 @@ var css = microsass.convert(scss, {
 
 <br>
 
-# Conver by NPM module
+# Convert by NPM module
 
 `npm install microsass -save`
 
 ```js
-const microsass = require('microsass');
+const microsass = require("microsass");
 
 var css = microsass.convert(scss, {
     format: true, // default is false
