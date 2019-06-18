@@ -151,7 +151,7 @@ var microsass = new (function(props) {
         return property;
     }
     var eval_property = function(line) {  // <-- MAIN EVAL PROPERTY VARS AND VALUES
-        
+
         line = line.split(":");
         line[1] = line[1].trim();
 
@@ -543,7 +543,7 @@ var microsass = new (function(props) {
         save_in_json_end();
     }
     var process_property = function(line) { // process property from inside selector
-        line = eval_property(line)
+        line = eval_property(line); // eval vars in property
         // return the last array property from json
         var last_selector = get_last_json();
         var property = line.split(":");
@@ -581,7 +581,6 @@ var microsass = new (function(props) {
                     // close keyframes bracket
                     if (is_close_keyframes_bracket(false)) {
                         // remove last selector in json_end
-                        console.log("entra");
                         remove_in_json_end();
                     }
                 }
@@ -593,6 +592,7 @@ var microsass = new (function(props) {
         }
     }
     var process_keyframes_property = function(line) {
+        line = eval_property(line); // eval vars in property
         // get the last keyframe
         var last_keyframe = global.json[global.json.length - 1][1];
         last_keyframe = last_keyframe[last_keyframe.length -1][1]; 
@@ -613,6 +613,7 @@ var microsass = new (function(props) {
         is_close_media_bracket(true);
     }
     var process_media_property = function(line) {
+        line = eval_property(line); // eval vars in property
         var property = line.split(":");
         var last_media_selector = global.json[global.json.length-1][1];
         last_media_selector = last_media_selector[last_media_selector.length-1][1];
@@ -667,9 +668,9 @@ var microsass = new (function(props) {
     }
     var if_exist_capsulaid_in_options_replace = function(line) {
         // if exist capsula id in options, replace this for capsula id from options
-        if (global.options.capid) {
+        if (global.options.dabu_id) {
             if (line === "this") {
-                line = "#" + global.options.capid;
+                line = "#" + global.options.dabu_id;
             }
         }
         return line;
