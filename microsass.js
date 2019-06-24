@@ -67,14 +67,15 @@ var microsass = new (function(props) {
         // evaluate the operations in property
         var re = /([^ ]*)[0-9](px|em|vw|ex|ch|rem|vh|vmin|vmax|%|ms|s|cm|mm|pt|pc)/g;
         var size = /px|em|vw|ex|ch|rem|vh|vmin|vmax|%|ms|s|cm|mm|pt|pc/g;
-        var operators = /-|\+|\/|\*/;
+        var re2 = /([^]*)[0-9]([^]*)([^]-|\+|\/|\*)([^]*)[0-9]([^]*)/;
 
         // var saved_size = 
 
         var match_size = operation.match(size);
         var saved_size = false;
-
-        if (operators.test(operation) && match_size) {
+        
+        if (re2.test(operation) && match_size) {
+            console.log(operation);
             saved_size = match_size[0];
             operation = operation.replace(size, "");
         }
