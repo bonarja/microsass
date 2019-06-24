@@ -66,10 +66,22 @@ var microsass = new (function(props) {
     var eval_value_result_in_property = function(operation) { 
         // evaluate the operations in property
         var re = /([^ ]*)[0-9](px|em|vw|ex|ch|rem|vh|vmin|vmax|%|ms|s|cm|mm|pt|pc)/g;
+        var size = /px|em|vw|ex|ch|rem|vh|vmin|vmax|%|ms|s|cm|mm|pt|pc/g;
+        var operators = /-|\+|\/|\*/;
+
+        // var saved_size = 
+
+        var match_size = operation.match(size);
+        var saved_size = false;
+
+        if (operators.test(operation) && match_size) {
+            saved_size = match_size[0];
+            operation = operation.replace(size, "");
+        }
 
         var result = getSize(operation); // {size, result}
-
-        _regex(result.result, /([0-9 +-/*.()]*)([^;]\+|-|\/\*)([0-9 +-/*.(){}]*)/g, function(match,index) {
+        _regex(result.result, /([0-9 +-/*.()]*)([^;]\+|-|\/|\*)([0-9 +-/*.(){}]*)/g, function(match,index) {
+           
             if (index !== 0) return;
             try {
                 // eval and add final symbol
@@ -85,7 +97,9 @@ var microsass = new (function(props) {
                 operation = operation.replace(match, " "+replace);
             } catch (error) {}
         })
-
+        if (saved_size) {
+            operation += saved_size;
+        }
         return operation;
     };
     var customSCSS = function(scss) {
