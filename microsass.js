@@ -63,42 +63,40 @@ var microsass = new (function(props) {
             result: initial_value.replace(regex, "")
         };
     };
-    var eval_value_result_in_property = function(operation) { 
+    var eval_value_result_in_property = function(operation) {
+       
         // evaluate the operations in property
         var re = /([^ ]*)[0-9](px|em|vw|ex|ch|rem|vh|vmin|vmax|%|ms|s|cm|mm|pt|pc)/g;
         var size = /px|em|vw|ex|ch|rem|vh|vmin|vmax|%|ms|s|cm|mm|pt|pc/g;
         var re2 = /([^]*)[0-9]([^]*)([^]-|\+|\/|\*)([^]*)[0-9]([^]*)/;
-
-        // var saved_size = 
-
+        
         var match_size = operation.match(size);
         var saved_size = false;
         
         if (re2.test(operation) && match_size) {
-            console.log(operation);
             saved_size = match_size[0];
             operation = operation.replace(size, "");
         }
 
         var result = getSize(operation); // {size, result}
-        _regex(result.result, /([0-9 +-/*.()]*)([^;]\+|-|\/|\*)([0-9 +-/*.(){}]*)/g, function(match,index) {
-           
-            if (index !== 0) return;
-            try {
-                // eval and add final symbol
-                var replace = eval(match) + result.size;
-                
-                // remove all sise symbols
-                _regex(operation, re, function(a,b){
-                    if (b !== 0) return
-                    operation = operation.replace(a, a.replace(/[A-z]/g,""));
-                })
-                
-                // replace in operation with removed symbol the match witout symbol for replace (eval value result)
-                operation = operation.replace(match, " "+replace);
-            } catch (error) {}
-        })
-        if (saved_size) {
+
+        if (saved_size){
+            _regex(result.result, /([0-9 +-/*.()]*)([^;]\+|-|\/|\*)([0-9 +-/*.(){}]*)/g, function(match,index) {
+                if (index !== 0) return;
+                try {
+                    // eval and add final symbol
+                    var replace = eval(match) + result.size;
+                    
+                    // remove all sise symbols
+                    _regex(operation, re, function(a,b){
+                        if (b !== 0) return
+                        operation = operation.replace(a, a.replace(/[A-z]/g,""));
+                    })
+                    
+                    // replace in operation with removed symbol the match witout symbol for replace (eval value result)
+                    operation = operation.replace(match, " "+replace);
+                } catch (error) {}
+            })
             operation += saved_size;
         }
         return operation;

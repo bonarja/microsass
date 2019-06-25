@@ -1,6 +1,6 @@
 {
     "name": "microsass",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "simple scss to css in the web navigator",
     "main": "microsass.js",
     "scripts": {
